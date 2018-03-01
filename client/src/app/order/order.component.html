@@ -1,0 +1,47 @@
+<section id="cart">
+    <div class="container-fluid p-5">
+        <app-message></app-message>
+        <div *ngIf="order" class="row">
+            <div class="col-md-9">
+                <p class="lead font-weight-bold">Order details</p>
+                <div class="row">
+                    <div class="col-4 d-none d-md-block">
+                        <p>
+                            <small class="text-muted">Product name</small>
+                        </p>
+                    </div>
+                    <div class="offset-4 col-2 d-none d-md-block">
+                        <p>
+                            <small class="text-muted">Total price</small>
+                        </p>
+                    </div>
+                    <div class="col-2 d-none d-md-block">
+                        <p>
+                            <small class="text-muted">Quantity</small>
+                        </p>
+                    </div>
+                </div>
+                <hr class="mt-0">
+                <div class="cartItem">
+                    <!--<div *ngFor="let product of order.order.products">-->
+                    <div class="row" *ngFor="let item of order.products">
+                        <div class="col-4 d-md-block">
+                            <span>{{ item.product.title }}</span>
+                        </div>
+                        <div class="offset-4 col-2 d-md-block">
+                            <h6 class="font-weight-bold text-danger">{{ item.product.price | currency }}</h6>
+                        </div>
+                        <div class="col-2 d-md-block">
+                            <span>{{ item.quantity }}</span>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--</div>-->
+                </div>
+                <h5 class="text-right">Total:
+                    <span class="ml-1 font-weight-bold text-danger">{{(order.totalPrice / 100) | currency }}</span>
+                </h5>
+            </div>
+        </div>
+    </div>
+</section>
